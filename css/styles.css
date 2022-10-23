@@ -30,6 +30,7 @@
   /* shadow */
   --card-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -89,6 +90,9 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 300ms var(--timing-function);
 }
 
 .backdrop.is-hidden {
@@ -96,37 +100,37 @@ img {
   pointer-events: none;
 }
 
-.backdrop:hover {
-  opacity: 1;
+.backdrop.is-hidden .modal {
+ transform: translate(-50%, -50%) scale(0);
 }
+
 
 .modal {
   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 300ms var(--timing-function) 300ms;
 
   width: 528px;
   height: 581px;
   padding: 15px;
 
   background-color: #ffffff;
-
 }
 
 .btn-modal {
-  position: absolute; 
+  position: absolute;
   top: 8px;
   right: 8px;
   width: 30px;
   height: 30px;
   padding: 8px;
-  
+
   background: var(--second-akcent-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   cursor: pointer;
-  
 }
 
 .btn-modal::before {
@@ -134,11 +138,11 @@ img {
   display: block;
   width: 9px;
   height: 10px;
-  
+
   pointer-events: none;
   left: 50%;
   top: 50%;
- 
+
   background-image: url(../images/Close.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -149,11 +153,6 @@ img {
   top: 0;
   right: 0;
 }
-
-
-
-
-
 
 /* HEADER */
 .header-site {
@@ -203,6 +202,10 @@ img {
   line-height: 1.142;
   letter-spacing: 0.02em;
   color: var(--one-text-color);
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .site-nav .link:hover,
@@ -222,12 +225,32 @@ a.link.current {
   color: var(--akcent-color);
 }
 
+.site-nav {
+  position: relative;
+}
+
+.link.current::after {
+  position: absolute;
+  left: 0;
+  bottom: -200%;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #2196f3;
+  border-radius: 2px;
+}
+
 .site-contacts .link {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.142;
   letter-spacing: 0.02em;
   color: var(--second-text-color);
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .site-contacts .link:hover,
@@ -351,6 +374,27 @@ a.link.current {
   margin-right: 30px;
 }
 
+.item {
+  position: relative;
+}
+
+.above-item {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  left: 0;
+  bottom: 0;
+  font-weight: 700;
+  line-height: 1.142;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: rgba(47, 48, 58, 0.8);
+  color: var(--second-akcent-color);
+}
+
 .section-title {
   margin-bottom: 50px;
   font-weight: 700;
@@ -419,6 +463,10 @@ a.link.current {
   height: 44px;
   border-radius: 50%;
   color: var(--icon-color);
+
+  transition-property: background-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .link-icon:hover,
@@ -449,6 +497,10 @@ a.link.current {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   color: var(--icon-color);
+
+  transition-property: border-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .icon-compani:hover,
@@ -507,6 +559,10 @@ a.link.current {
   line-height: 1.714;
   letter-spacing: 0.03em;
   color: #ffffff;
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .footer-adr:hover,
@@ -520,6 +576,10 @@ a.link.current {
   line-height: 1.714;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .footer-person:hover,
@@ -560,6 +620,10 @@ a.link.current {
   height: 44px;
   border-radius: 50%;
   color: var(--icon-color);
+
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .icon-footer {
@@ -572,7 +636,6 @@ a.link.current {
 .link-icon-footer:focus {
   background-color: var(--akcent-color);
 }
-
 
 /* Сторінка 2 */
 .button-card {
@@ -590,6 +653,9 @@ a.link.current {
   cursor: pointer;
   border-radius: 4px;
   border: none;
+
+  transition: background-color 250ms var(--timing-function),
+    color 250ms var(--timing-function), box-shadow 250ms;
 }
 
 .button-card:hover,
@@ -620,51 +686,35 @@ a.link.current {
   margin-top: -30px;
 }
 
-
 .over-card {
   position: relative;
-}
-
-.over-card:hover .over-boxes {
-  opacity: 1;
-  left: 0;
-  top: 0;
+  overflow: hidden;
 }
 
 .over-boxes {
   position: absolute;
   left: 0;
-  top: 100%;
-  display: block;
+  top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-}  
-
-.over-card::before {
-  position: absolute;
-  content: "";
   display: inline-block;
   width: 100%;
   height: 100%;
   background-color: rgba(33, 150, 243, 0.9);
-  opacity: 0;
-  left: 0;
-  top: 100%;
+  
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
 }
 
-.over-card:hover::before,
-.over-text:hover {
-  opacity: 1;
-  left: 0;
-  top: 0;
+.boxes-card:hover .over-boxes {
+  transform: translateY(0);
 }
 
 .over-text {
   position: absolute;
   left: 0;
   top: 0;
-  opacity: 0;
+  opacity: 1;
 
   padding: 61px 24px 65px 24px;
   display: block;
@@ -672,14 +722,14 @@ a.link.current {
   line-height: 1.55;
   letter-spacing: 0.03em;
   color: var(--second-akcent-color);
-} 
-
+}
 
 .boxes > .boxes-top {
   flex-basis: calc(100% / 3 - 30px);
   margin-left: 30px;
   margin-top: 30px;
 }
+
 .boxes-card:hover,
 .boxes-card:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -688,6 +738,10 @@ a.link.current {
 
 .boxes-card {
   display: block;
+
+  transition-property: box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: var(--timing-function);
 }
 
 .boxes-title {
