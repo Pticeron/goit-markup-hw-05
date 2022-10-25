@@ -376,14 +376,17 @@ a.link.current {
 
 .item {
   position: relative;
+
 }
 
 .above-item {
   position: absolute;
+  display: flex;
+ align-items: center;
+ justify-content: center;
   width: 100%;
   height: 70px;
-  padding-top: 27px;
-  padding-bottom: 27px;
+  
   left: 0;
   bottom: 0;
   font-weight: 700;
@@ -526,6 +529,7 @@ a.link.current {
 .main-footer {
   display: flex;
   align-items: baseline;
+  justify-content: space-around;
 }
 
 .footer-contakt {
@@ -589,6 +593,7 @@ a.link.current {
 
 .footer-social {
   margin-left: 70px;
+  margin-right: 93px;
 }
 .footer-style {
   display: flex;
@@ -636,6 +641,36 @@ a.link.current {
 .link-icon-footer:focus {
   background-color: var(--akcent-color);
 }
+
+.footer-mail > input {
+  width: 358px;
+  padding: 15px;
+  margin-right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  background: #2F303A;
+}
+
+.footer-btn {
+  width: 200px;
+  height: 50px;
+  padding: 10px 28px;
+  font-family: var(--one-font-family);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.875;
+    letter-spacing: 0.06em;
+  
+  color: var(--second-akcent-color);
+  background: var(--akcent-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+
 
 /* Сторінка 2 */
 .button-card {
